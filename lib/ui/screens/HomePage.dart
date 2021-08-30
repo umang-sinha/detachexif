@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -35,13 +37,24 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 400,
+              height: 500,
+              child: _image == null
+                  ? Center(
+                    child: Text(
+                        'No Image has been selected',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: createMaterialColor(Color(0xFFFDC591)),
+                        ),
+                      ),
+                  )
+                  : Image.file(File(_image!.path)),
             ),
           ),
           ElevatedButton(
