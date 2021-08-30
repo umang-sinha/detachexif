@@ -46,29 +46,46 @@ class _HomePageState extends State<HomePage> {
               height: 500,
               child: _image == null
                   ? Center(
-                    child: Text(
+                      child: Text(
                         'No Image has been selected',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: createMaterialColor(Color(0xFFFDC591)),
                         ),
                       ),
-                  )
-                  : Image.file(File(_image!.path)),
+                    )
+                  : Container(child: Image.file(File(_image!.path))),
             ),
           ),
-          ElevatedButton(
-            onPressed: getImageFromGallery,
-            child: Text(
-              'Button',
-              style: TextStyle(
-                color: createMaterialColor(Color(0xFF000000)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: getImageFromGallery,
+                child: Text(
+                  'Pick an image',
+                  style: TextStyle(
+                    color: createMaterialColor(Color(0xFF000000)),
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: createMaterialColor(Color(0xFFFDC591)),
+                ),
               ),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: createMaterialColor(Color(0xFFFDC591)),
-            ),
-          ),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  'detachEXIF!',
+                  style: TextStyle(
+                    color: createMaterialColor(Color(0xFF000000)),
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: createMaterialColor(Color(0xFFFDC591)),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
