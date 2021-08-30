@@ -27,14 +27,19 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future detachEXIFandSave() async {
-    final saveDirectory = await path_provider.getExternalStorageDirectory();
-    var split = _image!.path.split(".");
-    var format = split[split.length - 1];
+    try {
+      final saveDirectory = await path_provider.getExternalStorageDirectory();
+      var split = _image!.path.split(".");
+      var format = split[split.length - 1];
 
-    final saveLocationPath = saveDirectory!.absolute.path + "/exif_.$format";
+      final saveLocationPath = saveDirectory!.absolute.path + "/exif_.$format";
 
-    await FlutterImageCompress.compressAndGetFile(
-        _image!.path, saveLocationPath);
+      await FlutterImageCompress.compressAndGetFile(
+          _image!.path, saveLocationPath);
+    } on Exception catch (e) {
+      // TODO
+      print(e);
+    }
   }
 
   @override
