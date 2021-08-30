@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../createMaterialColor.dart';
@@ -29,9 +30,12 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         elevation: 0,
         title: Text(
-          'detachEXIF',
-          style: TextStyle(
-            color: createMaterialColor(Color(0xFFFDC591)),
+          'detachEXIF!',
+          style: GoogleFonts.oxygen(
+            fontWeight: FontWeight.bold,
+            textStyle: TextStyle(
+              color: createMaterialColor(Color(0xFFFDC591)),
+            ),
           ),
         ),
         centerTitle: true,
@@ -47,10 +51,14 @@ class _HomePageState extends State<HomePage> {
               child: _image == null
                   ? Center(
                       child: Text(
-                        'No Image has been selected',
+                        'No Image has been selected!',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: createMaterialColor(Color(0xFFFDC591)),
+                        style: GoogleFonts.oxygen(
+                          fontWeight: FontWeight.w500,
+                          textStyle: TextStyle(
+                            color: createMaterialColor(Color(0xFFFDC591)),
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                     )
@@ -64,8 +72,11 @@ class _HomePageState extends State<HomePage> {
                 onPressed: getImageFromGallery,
                 child: Text(
                   'Pick an image',
-                  style: TextStyle(
-                    color: createMaterialColor(Color(0xFF000000)),
+                  style: GoogleFonts.oxygen(
+                    fontWeight: FontWeight.w600,
+                    textStyle: TextStyle(
+                      color: createMaterialColor(Color(0xFF000000)),
+                    ),
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -76,8 +87,11 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {},
                 child: Text(
                   'detachEXIF!',
-                  style: TextStyle(
-                    color: createMaterialColor(Color(0xFF000000)),
+                  style: GoogleFonts.oxygen(
+                    fontWeight: FontWeight.w600,
+                    textStyle: TextStyle(
+                      color: createMaterialColor(Color(0xFF000000)),
+                    ),
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
