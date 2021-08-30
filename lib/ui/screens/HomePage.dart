@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../createMaterialColor.dart';
 
@@ -10,6 +11,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  XFile? _image;
+
+  Future getImageFromGallery() async {
+    var image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      this._image = image;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +45,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: getImageFromGallery,
             child: Text(
               'Button',
               style: TextStyle(
