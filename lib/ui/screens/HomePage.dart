@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:intl/intl.dart';
 
 import '../createMaterialColor.dart';
 
@@ -17,6 +18,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   XFile? _image;
+  var filename = "detachexif_";
+  DateTime now = new DateTime.now();
 
   Future getImageFromGallery() async {
     var image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -32,7 +35,9 @@ class _HomePageState extends State<HomePage> {
       var split = _image!.path.split(".");
       var format = split[split.length - 1];
 
-      final saveLocationPath = saveDirectory!.absolute.path + "/exif_.$format";
+      filename += now.year.toString() + now.month.toString() + now.day.toString() + now.hour.toString() + now.minute.toString() + now.second.toString();
+
+      final saveLocationPath = saveDirectory!.absolute.path + "/$filename.$format";
 
       await FlutterImageCompress.compressAndGetFile(
           _image!.path, saveLocationPath);
