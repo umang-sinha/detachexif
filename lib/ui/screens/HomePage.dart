@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
 import '../createMaterialColor.dart';
 
@@ -22,6 +24,17 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       this._image = image;
     });
+  }
+
+  Future detachEXIFandSave() async {
+    final saveDirectory = await path_provider.getExternalStorageDirectory();
+    var split = _image!.path.split(".");
+    var format = split[split.length - 1];
+
+    final saveLocationPath = saveDirectory!.absolute.path + "/exif_.$format";
+
+    await FlutterImageCompress.compressAndGetFile(
+        _image!.path, saveLocationPath);
   }
 
   @override
@@ -84,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: detachEXIFandSave,
                 child: Text(
                   'detachEXIF!',
                   style: GoogleFonts.oxygen(
